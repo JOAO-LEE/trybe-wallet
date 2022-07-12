@@ -23,12 +23,7 @@ class Wallet extends React.Component {
     this.setState({ total: spendings });
   };
 
-  // componentDidUpdate = () => {
-  //   this.totalSpendings();
-  // };
-
   render() {
-    // console.log(this.totalSpendings());
     const { email } = this.props;
     const { total } = this.state;
     return (
@@ -39,6 +34,21 @@ class Wallet extends React.Component {
           <h3 data-testid="header-currency-field">BRL</h3>
         </header>
         <SpendingForm updateTotal={ this.totalSpendings } />
+        <table>
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Tag</th>
+              <th>Método de pagamento</th>
+              <th>Valor</th>
+              <th>Moeda</th>
+              <th>Câmbio utilizado</th>
+              <th>Valor convertido</th>
+              <th>Moeda de conversão</th>
+              <th>Editar/Excluir</th>
+            </tr>
+          </thead>
+        </table>
       </>
     );
   }
