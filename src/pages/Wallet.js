@@ -24,7 +24,8 @@ class Wallet extends React.Component {
   };
 
   render() {
-    const { email } = this.props;
+    const { email, expenses } = this.props;
+    console.log(expenses);
     const { total } = this.state;
     return (
       <>
@@ -48,6 +49,27 @@ class Wallet extends React.Component {
               <th>Editar/Excluir</th>
             </tr>
           </thead>
+          <tbody>
+            {expenses.map((expense, index) => (
+              <tr key={ index }>
+                <td>{expense.description}</td>
+                <td>{expense.tag}</td>
+                <td>{expense.method}</td>
+                <td>{Number(expense.value).toFixed(2)}</td>
+                <td>{expense.exchangeRates[expense.currency].name}</td>
+                <td>{Number(expense.exchangeRates[expense.currency].ask).toFixed(2)}</td>
+                <td>
+                  {(Number(expense.exchangeRates[expense.currency].ask)
+                  * Number(expense.value)).toFixed(2)}
+                </td>
+                <td>Real</td>
+                <td>
+                  <button type="button">Editar</button>
+                  <button type="button">Excluir</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       </>
     );
