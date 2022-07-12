@@ -35,7 +35,6 @@ class Login extends React.Component {
 
   render() {
     const { email, password, loginButton } = this.state;
-    console.log(this.props);
     return (
       <main>
         <fieldset>
