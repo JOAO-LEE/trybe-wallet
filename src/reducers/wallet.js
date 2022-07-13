@@ -23,12 +23,11 @@ const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: [...state.expenses, { ...action.payload }],
     };
-  case DELETE_EXPENSES: {
+  case DELETE_EXPENSES:
     return {
       ...state,
-      expenses: [...action.filteredExpenses],
+      expenses: [...action.newPayload],
     };
-  }
   case EDIT_EXPENSES:
     return {
       ...state,

@@ -29,9 +29,9 @@ class Wallet extends React.Component {
     return spendings;
   };
 
-  deleteSpending = (listItem) => {
+  deleteSpending = ({ target: { id } }) => {
     const { expenses, deleteExpenses } = this.props;
-    deleteExpenses(expenses, listItem);
+    deleteExpenses(expenses, id);
     this.totalSpendings();
   }
 

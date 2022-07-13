@@ -9,12 +9,11 @@ export const EDIT_EXPENSES = 'EDIT_EXPENSES';
 export const userInfoAction = (payload) => ({ type: USER_INFO, payload });
 export const currencySaveAction = (payload) => ({ type: CURRENCY_SAVE, payload });
 export const savingSpendingsAction = (payload) => ({ type: SPENDING_SAVINGS, payload });
-export const deleteExpensesAction = (expenses, e) => {
-  const filteredExpenses = expenses
-    .filter((expense) => expense.id !== Number(e.target.id));
+export const deleteExpensesAction = (payload, button) => {
+  const newPayload = payload.filter((expense) => expense.id !== Number(button));
   return {
     type: DELETE_EXPENSES,
-    filteredExpenses,
+    newPayload,
   };
 };
 export const editExpenseAction = () => ({ type: EDIT_EXPENSES });
