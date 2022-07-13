@@ -7,7 +7,7 @@ import { savingSpendingsAction } from '../actions';
 class SpendingForm extends Component {
   state = {
     id: 0,
-    value: 0,
+    value: '',
     description: '',
     currency: 'USD',
     method: 'Dinheiro',
@@ -26,7 +26,7 @@ class SpendingForm extends Component {
       dispatch(savingSpendingsAction(this.state));
       this.setState((prev) => ({
         id: prev.id + 1,
-        value: 0,
+        value: '',
         description: '',
       }));
     });

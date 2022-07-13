@@ -58,63 +58,69 @@ class Wallet extends React.Component {
           <h3 data-testid="header-currency-field">BRL</h3>
         </header>
         <SpendingForm editData={ editData } updateTotal={ this.totalSpendings } />
-        <table>
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Tag</th>
-              <th>Método de pagamento</th>
-              <th>Valor</th>
-              <th>Moeda</th>
-              <th>Câmbio utilizado</th>
-              <th>Valor convertido</th>
-              <th>Moeda de conversão</th>
-              <th>Editar/Excluir</th>
-            </tr>
-          </thead>
-          <tbody>
-            {expenses.map((expense) => (
-              <tr key={ expense.id }>
-                <td>{expense.description}</td>
-                <td>{expense.tag}</td>
-                <td>{expense.method}</td>
-                <td>{Number(expense.value).toFixed(2)}</td>
-                <td>{expense.exchangeRates[expense.currency].name}</td>
-                <td>
-                  {Number(expense.exchangeRates[expense.currency].ask).toFixed(
-                    2,
-                  )}
-                </td>
-                <td>
-                  {(
-                    Number(expense.exchangeRates[expense.currency].ask)
+        {
+          expenses.length ? (
+            <table>
+              <thead>
+                <tr>
+                  <th>Descrição</th>
+                  <th>Tag</th>
+                  <th>Método de pagamento</th>
+                  <th>Valor</th>
+                  <th>Moeda</th>
+                  <th>Câmbio utilizado</th>
+                  <th>Valor convertido</th>
+                  <th>Moeda de conversão</th>
+                  <th>Editar/Excluir</th>
+                </tr>
+              </thead>
+              <tbody>
+                {expenses.map((expense) => (
+                  <tr key={ expense.id }>
+                    <td>{expense.description}</td>
+                    <td>{expense.tag}</td>
+                    <td>{expense.method}</td>
+                    <td>{Number(expense.value).toFixed(2)}</td>
+                    <td>{expense.exchangeRates[expense.currency].name}</td>
+                    <td>
+                      {Number(expense.exchangeRates[expense.currency].ask).toFixed(
+                        2,
+                      )}
+                    </td>
+                    <td>
+                      {(
+                        Number(expense.exchangeRates[expense.currency].ask)
                     * Number(expense.value)
-                  ).toFixed(2)}
-                </td>
-                <td>Real</td>
-                <td>
-                  <button
-                    id={ expense.id }
-                    onClick={ this.editButton }
-                    data-testid="edit-btn"
-                    type="button"
-                  >
-                    Editar
+                      ).toFixed(2)}
+                    </td>
+                    <td>Real</td>
+                    <td>
+                      <button
+                        id={ expense.id }
+                        onClick={ this.editButton }
+                        data-testid="edit-btn"
+                        type="button"
+                      >
+                        Editar
 
-                  </button>
-                  <button
-                    id={ expense.id }
-                    data-testid="delete-btn"
-                    onClick={ (event) => this.deleteSpending(event) }
-                    type="button"
-                  >
-                    Excluir
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                      </button>
+                      <button
+                        id={ expense.id }
+                        data-testid="delete-btn"
+                        onClick={ (event) => this.deleteSpending(event) }
+                        type="button"
+                      >
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p>Não há despesas</p>
+          )
+        }
       </>
     );
   }
