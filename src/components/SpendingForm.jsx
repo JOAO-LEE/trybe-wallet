@@ -20,7 +20,6 @@ class SpendingForm extends Component {
   };
 
   handleClick = async () => {
-    const { updateTotal } = this.props;
     const currencies = await currencyAPI();
     this.setState({ exchangeRates: currencies }, () => {
       const { dispatch } = this.props;
@@ -31,11 +30,10 @@ class SpendingForm extends Component {
         description: '',
       }));
     });
-    updateTotal();
   };
 
   render() {
-    const { currencies } = this.props;
+    const { currencies, editor } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
       <fieldset>
@@ -104,7 +102,7 @@ class SpendingForm extends Component {
           onClick={ this.handleClick }
           type="button"
         >
-          Adicionar despesa
+          { !editor ? 'Adicionar despesa' : 'Editar despesa'}
         </button>
       </fieldset>
     );
@@ -113,6 +111,7 @@ class SpendingForm extends Component {
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  editor: state.wallet.editor,
 });
 
 SpendingForm.propTypes = {
