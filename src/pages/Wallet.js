@@ -31,7 +31,8 @@ class Wallet extends React.Component {
 
   deleteSpending = ({ target: { id } }) => {
     const { expenses, deleteExpenses } = this.props;
-    deleteExpenses(expenses, id);
+    const remainingExpenses = expenses.filter((expense) => expense.id !== Number(id));
+    deleteExpenses(remainingExpenses, id);
     this.totalSpendings();
   }
 

@@ -9,21 +9,11 @@ export const EDIT_EXPENSES = 'EDIT_EXPENSES';
 export const userInfoAction = (payload) => ({ type: USER_INFO, payload });
 export const currencySaveAction = (payload) => ({ type: CURRENCY_SAVE, payload });
 export const savingSpendingsAction = (payload) => ({ type: SPENDING_SAVINGS, payload });
-export const deleteExpensesAction = (payload, button) => {
-  const newPayload = payload.filter((expense) => expense.id !== Number(button));
-  return {
-    type: DELETE_EXPENSES,
-    newPayload,
-  };
-};
+export const deleteExpensesAction = (payload) => ({ type: DELETE_EXPENSES, payload });
+
 export const editExpenseAction = () => ({ type: EDIT_EXPENSES });
 
 export const currencySavingThunk = () => async (dispatch) => {
   const currencies = await currencyAPI();
   dispatch(currencySaveAction(Object.keys(currencies)));
 };
-
-// export const deleteExpensesActionThunk = (expenses, e) => (dispatch) => {
-//   dispatch(deleteExpensesAction(expenses
-//    )));
-// };
