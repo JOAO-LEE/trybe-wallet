@@ -127,10 +127,10 @@ class Wallet extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  email: state.user.email,
-  expenses: state.wallet.expenses,
-  editor: state.wallet.editor,
+const mapStateToProps = ({ user: { email }, wallet: { expenses, editor } }) => ({
+  email,
+  expenses,
+  editor,
 });
 
 const mapDispatchToProps = (dispatch) => ({
